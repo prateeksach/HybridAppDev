@@ -22,7 +22,7 @@ Sublime for actual development instead of vim or emacs). Before you get started,
 Installation Guide
 -----------------
 
-Follow this guide and let me know if you encounter any issues. Also, for Windows, it seems the tech we will be using ([Ionic Framework](http://ionicframework.com/getting-started/)) suggests that you use the [Visual Studio Community](https://www.visualstudio.com/) for development, which comes with everything you need. But also go through this just in case!
+Follow this guide and let me know if you encounter any issues. 
 
 * Install Node.js v0.12.7: [Download it here](https://nodejs.org/dist/v0.12.7/)
 	* For Mac, download the .pkg file
