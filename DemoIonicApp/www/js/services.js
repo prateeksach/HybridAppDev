@@ -1,10 +1,11 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
-
+// *** PC: This is where you defin the Models and access them like classes in C++
+// Each 'factory' can be initialized and if there are class functions, you can use them
+// without initialization.
+.factory('Chats', function ($q) {
   // Some fake testing data
-  var chats = [{
+  var sampleData = [{
     id: 0,
     name: 'Ben Sparrow',
     lastText: 'You on your way?',
@@ -31,20 +32,28 @@ angular.module('starter.services', [])
     face: 'https://pbs.twimg.com/profile_images/578237281384841216/R3ae1n61.png'
   }];
 
-  return {
+  var Chats = Parse.Object.extend("Chats", {
+    // Instance methods
+    initialize: function(attrs, options) {
+
+    }
+  }, {
+    // Class methods
     all: function() {
-      return chats;
+      return sampleData;
     },
     remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
+      sampleData.splice(sampleData.indexOf(chat), 1);
     },
     get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
+      for (var i = 0; i < sampleData.length; i++) {
+        if (sampleData[i].id === parseInt(chatId)) {
+          return sampleData[i];
         }
       }
       return null;
     }
-  };
+  });
+
+  return Chats;
 });

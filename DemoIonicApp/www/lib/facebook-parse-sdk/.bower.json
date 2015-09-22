@@ -1,0 +1,34 @@
+{
+  "name": "facebook-parse-sdk",
+  "version": "1.5.0",
+  "homepage": "https://github.com/prateeksach/bower-facebook-parse",
+  "authors": [
+    "Prateek Sachdeva <prateeksach@gmail.com>"
+  ],
+  "description": "JS SDK for Facebook Parse (version 1.5.0)",
+  "main": "dist/parse.min.js",
+  "keywords": [
+    "facebook",
+    "parse",
+    "sdk",
+    "js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "1.5.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.5.0",
+    "commit": "9102b2595fed15d6453028dcbdfb705b4950d611"
+  },
+  "_source": "git://github.com/prateeksach/bower-facebook-parse.git",
+  "_target": "~1.5.0",
+  "_originalSource": "facebook-parse-sdk",
+  "_direct": true
+}

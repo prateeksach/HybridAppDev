@@ -2,6 +2,7 @@
   "name": "HelloIonic",
   "private": "true",
   "devDependencies": {
+    "facebook-parse-sdk": "~1.5.0",
     "ionic": "driftyco/ionic-bower#1.1.0"
   }
 }

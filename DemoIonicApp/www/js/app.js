@@ -1,3 +1,11 @@
+// *** PC (Prateek's Comments):
+// This file runs first when your app loads so all initialization code should go inside the
+// `.run` segment. The `.config` segment is for initializing routes (urls) and what controller/view
+// corresponds to each route. 
+
+// PS: My future comments will be tagged with '*** PC'
+
+
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -8,6 +16,10 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform) {
+  // *** PC: This function is called when the app and its plugins have loaded. Ionic
+  // components are unavailable in app.js until this function is called so if you need to use
+  // a plugin or Ionic, put it inside here.
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -16,15 +28,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       cordova.plugins.Keyboard.disableScroll(true);
 
     }
+
+    // Set the style for statusbar (org.apache.cordova.statusbar) required
     if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
   });
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
-
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
