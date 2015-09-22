@@ -1,0 +1,16 @@
+// Declare variables
+$red: #332ASD;
+$border-radius: 4px;
+
+// Declare mixins like this (accept any number of parameters)
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-o-border-radius: $radius;
+	border-radius: $radius;
+}
+
+// Now how do we use it?
+.row {
+	
+}

@@ -1,0 +1,17 @@
+// Import other files
+@import "variables";
+
+// Pure CSS
+body.main {
+	max-width: 1200px;
+}
+
+body.main .container {
+	margin: 0 auto;
+}
+
+body.main .container .row {
+	height: 300px;
+}
+
+// How do we do it in SASS?
