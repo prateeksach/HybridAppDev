@@ -6,11 +6,15 @@ angular.module('starter.controllers', [])
   // *** PC: Define any variables you want with $scope. $scope is essentially the global variable for
   // this particular controller and this view (html file) but in the HTML, you don't have to write $scope.name
   // to access this variable, instead you just type 'name'. Check out tab-dash.html.
-  $scope.name = "Prateek Sachdeva";
+  $scope.name = "Prateek";
 
   // *** PC: This is how you define functions and since $scope is accessible by the whole controler
   $scope.hello = function() {
-    alert("Hello. How are you " + $scope.name);
+    Parse.Cloud.run("sample", {from: "James"}).then(function(data) {
+      console.log(data);
+    }, function(error) {
+
+    })
   }
 })
 

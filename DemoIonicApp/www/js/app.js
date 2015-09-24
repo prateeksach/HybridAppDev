@@ -1,3 +1,13 @@
+// Initialize Parse app
+var PARSE_APP_ID = 'o4IuVgVYP9suL0uvxodTnyO4MrlCBEBgQ3mzLzYG';
+var PARSE_JAVASCRIPT_KEY = 'sQ3dl1omwquZRsK9O7RGBLi4F3NTUqMOEsViUNUO';
+
+Parse.initialize(PARSE_APP_ID, PARSE_JAVASCRIPT_KEY);
+
+
+
+
+
 // *** PC (Prateek's Comments):
 // This file runs first when your app loads so all initialization code should go inside the
 // `.run` segment. The `.config` segment is for initializing routes (urls) and what controller/view
