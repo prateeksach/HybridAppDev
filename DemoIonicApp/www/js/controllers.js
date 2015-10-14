@@ -1,5 +1,6 @@
 angular.module('starter.controllers', [])
 
+<<<<<<< HEAD
 .controller('LoginCtrl', function($scope, $rootScope, $state, User) {
   $scope.user = new User()
 
@@ -19,6 +20,19 @@ angular.module('starter.controllers', [])
     }, function(error) {
       alert("Error in Signup.")
     })
+=======
+// *** PC: Each route should have it's own controller and the controller can let you do many things
+// The view files will interact with the controller and the controller will interact with the model.
+.controller('DashCtrl', function($scope) {
+  // *** PC: Define any variables you want with $scope. $scope is essentially the global variable for
+  // this particular controller and this view (html file) but in the HTML, you don't have to write $scope.name
+  // to access this variable, instead you just type 'name'. Check out tab-dash.html.
+  $scope.name = "Prateek Sachdeva";
+
+  // *** PC: This is how you define functions and since $scope is accessible by the whole controler
+  $scope.hello = function() {
+    alert("Hello. How are you " + $scope.name);
+>>>>>>> parent of ae7fda1... changes from 9/22 workshop
   }
 })
 

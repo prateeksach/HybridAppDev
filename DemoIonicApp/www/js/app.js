@@ -1,9 +1,27 @@
+<<<<<<< HEAD
 // Initialize Parse app
 var PARSE_APP_ID = 'CQsxzjJRg6VSSNqaFrtHgt0ikrJTOydhTCisCKOi';
 var PARSE_JAVASCRIPT_KEY = '7jJTf78dq2QHfrZVv2zyFutcpfb7Qkbw5HWfKkQZ';
 
 Parse.initialize(PARSE_APP_ID, PARSE_JAVASCRIPT_KEY);
 
+=======
+// *** PC (Prateek's Comments):
+// This file runs first when your app loads so all initialization code should go inside the
+// `.run` segment. The `.config` segment is for initializing routes (urls) and what controller/view
+// corresponds to each route. 
+
+// PS: My future comments will be tagged with '*** PC'
+
+
+// Ionic Starter App
+
+// angular.module is a global place for creating, registering and retrieving Angular modules
+// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// the 2nd parameter is an array of 'requires'
+// 'starter.services' is found in services.js
+// 'starter.controllers' is found in controllers.js
+>>>>>>> parent of ae7fda1... changes from 9/22 workshop
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform, $rootScope, User) {
