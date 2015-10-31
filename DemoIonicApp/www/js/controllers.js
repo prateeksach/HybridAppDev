@@ -2,22 +2,6 @@ angular.module('starter.controllers', ['parse-angular'])
 
 
 .controller('LoginCtrl', function($scope, $rootScope, $state, User) {
-  $scope.user = new User();
-
-  $scope.loginUser = function() {
-    $scope.user.loginUser().then(function() {
-      $rootScope.currentUser = Parse.User.current();
-
-      $state.go("tab.dash")
-    }, function(error) {
-      console.log(error);
-    })
-  }
-})
-
-
-<<<<<<< HEAD
-.controller('LoginCtrl', function($scope, $rootScope, $state, User) {
   $scope.user = new User()
 
   $scope.loginUser = function() {
@@ -36,7 +20,9 @@ angular.module('starter.controllers', ['parse-angular'])
     }, function(error) {
       alert("Error in Signup.")
     })
-=======
+  }
+})
+
 // *** PC: Each route should have it's own controller and the controller can let you do many things
 // The view files will interact with the controller and the controller will interact with the model.
 .controller('DashCtrl', function($scope, $rootScope, $state) {
@@ -55,7 +41,6 @@ angular.module('starter.controllers', ['parse-angular'])
 
   // *** PC: This is how you define functions and since $scope is accessible by the whole controler
   $scope.hello = function() {
-<<<<<<< HEAD
     // alert("Hello. How are you " + $scope.name);
 
     Parse.Cloud.run("getConversations").then(function(data) {
@@ -63,10 +48,6 @@ angular.module('starter.controllers', ['parse-angular'])
     }, function(error) {
       console.log(error);
     })
-=======
-    alert("Hello. How are you " + $scope.name);
->>>>>>> parent of ae7fda1... changes from 9/22 workshop
->>>>>>> origin/master
   }
 })
 
