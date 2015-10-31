@@ -3,57 +3,120 @@ angular.module('starter.services', [])
 // *** PC: This is where you defin the Models and access them like classes in C++
 // Each 'factory' can be initialized and if there are class functions, you can use them
 // without initialization.
-.factory('Chats', function ($q) {
-  // Some fake testing data
-  var sampleData = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'https://pbs.twimg.com/profile_images/598205061232103424/3j5HUXMY.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'https://pbs.twimg.com/profile_images/578237281384841216/R3ae1n61.png'
-  }];
+.factory('User', function ($q) {
+    var User = Parse.User.extend({
+        // Instance methods
+        initialize: function(attrs, options) {
+            this.isLoggingIn = false;
+            this.loggingInError = false;
 
-  var Chats = Parse.Object.extend("Chats", {
-    // Instance methods
-    initialize: function(attrs, options) {
+            this.isSigningUp = false;
+            this.signingUpError = false;
+        },
 
-    }
-  }, {
-    // Class methods
-    all: function() {
-      return sampleData;
-    },
-    remove: function(chat) {
-      sampleData.splice(sampleData.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < sampleData.length; i++) {
-        if (sampleData[i].id === parseInt(chatId)) {
-          return sampleData[i];
-        }
-      }
-      return null;
-    }
-  });
+        loginUser: function(options) {
+            var user = this, defer = $q.defer();
+          
+            // Validate input
+            if(!user.get('username'))
+                user.loggingInError = "Invalid Email";
+            else if(user.get('password') == "")
+                user.loggingInError = "Invalid Password"
 
-  return Chats;
+            if(user.loggingInError) {
+                defer.reject();
+            } else {
+                user.isLoggingIn = true;
+                user.loggingInError = false;
+
+                user.logIn({
+                    success: function() {
+                        user.isLoggingIn = false;
+                        defer.resolve();
+                    },
+                    error: function(error) {
+                        user.isLoggingIn = false;
+                        
+                        if(error.code == 101)
+                            user.loggingInError = "Invalid Credentials";
+                        else
+                            user.loggingInError = "Login Failed";
+
+                        defer.reject(error);
+                    }
+                })
+            }
+
+            return defer.promise;
+        },
+
+        signupUser: function(options) {
+            var user = this, defer = $q.defer();
+            options = options || {};
+            
+            // Validate input
+            if(!user.get('username'))
+                user.signingUpError = "Invalid Username";
+            else if(user.get('password') == "")
+                user.signingUpError = "Invalid Password";
+            else if(user.get('password') != user.verifyPassword)
+                user.signingUpError = "Passwords don't match";
+            else if(user.get('name') == "")
+                user.signingUpError = "Enter a Name";
+
+            if(user.signingUpError) {
+                defer.reject();
+            } else {
+                user.isSigningUp = true;
+                user.signingUpError = false;
+
+                user.set("email", user.get("username"));
+
+                user.signUp(null, {
+                    success: function() {
+                        user.isSigningUp = false;
+                        defer.resolve();
+                    },
+                    error: function(error) {
+                        user.isSigningUp = false;
+                        user.signingUpError = "Signup Failed";
+
+                        defer.reject(error);
+                    }
+                });
+            }
+
+            return defer.promise;
+        },
+    }, {
+        // Class methods
+    });
+
+    // Getters and setters to work with AngularJS.
+    
+    // Username property
+    User.prototype.__defineGetter__("username", function() {
+      return this.get("username");
+    });
+    User.prototype.__defineSetter__("username", function(aValue) {
+      return this.set("username", aValue);
+    });
+
+    // Password property
+    User.prototype.__defineGetter__("password", function() {
+      return this.get("password");
+    });
+    User.prototype.__defineSetter__("password", function(aValue) {
+      return this.set("password", aValue);
+    });
+
+    // Password property
+    User.prototype.__defineGetter__("name", function() {
+      return this.get("name");
+    });
+    User.prototype.__defineSetter__("name", function(aValue) {
+      return this.set("name", aValue);
+    });
+
+    return User;
 });

@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "Messenger": {
+      "applicationId": "UgPafZRwSsJgFTMDT4mFuCIhXkbxZx08ONt6MX4C"
+    },
+    "_default": {
+      "link": "Messenger"
+    }
+  }
+}

@@ -1,3 +1,9 @@
+// Initialize Parse app
+var PARSE_APP_ID = 'UgPafZRwSsJgFTMDT4mFuCIhXkbxZx08ONt6MX4C';
+var PARSE_JAVASCRIPT_KEY = 'y2rGTBIqNw1LqiF9o0yHnwFUF684hPIHizyfHk9Q';
+
+Parse.initialize(PARSE_APP_ID, PARSE_JAVASCRIPT_KEY);
+
 // *** PC (Prateek's Comments):
 // This file runs first when your app loads so all initialization code should go inside the
 // `.run` segment. The `.config` segment is for initializing routes (urls) and what controller/view
@@ -15,10 +21,21 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope) {
   // *** PC: This function is called when the app and its plugins have loaded. Ionic
   // components are unavailable in app.js until this function is called so if you need to use
   // a plugin or Ionic, put it inside here.
+
+  $rootScope.resetVariables = function() {
+    $rootScope.currentUser = null;
+  }
+
+  $rootScope.resetVariables();
+
+  // Check if user exists
+  if(Parse.User.current()) {
+    $rootScope.currentUser = Parse.User.current();
+  }
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -44,7 +61,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
@@ -89,7 +106,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'AccountCtrl'
       }
     }
-  });
+  })
+
+  .state('tab.login', {
+    url: '/login',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-login.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+
+  ;
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
