@@ -16,6 +16,27 @@ angular.module('starter.controllers', ['parse-angular'])
 })
 
 
+<<<<<<< HEAD
+.controller('LoginCtrl', function($scope, $rootScope, $state, User) {
+  $scope.user = new User()
+
+  $scope.loginUser = function() {
+    $scope.user.logIn().then(function(data) {
+      $rootScope.currentUser = Parse.User.current();
+      $state.go("tab.dash")
+    }, function(error) {
+      alert("Error in Login.")
+    })
+  }
+
+  $scope.signupUser = function() {
+    $scope.user.signUp().then(function(data) {
+      $rootScope.currentUser = Parse.User.current();
+      $state.go("tab.dash")
+    }, function(error) {
+      alert("Error in Signup.")
+    })
+=======
 // *** PC: Each route should have it's own controller and the controller can let you do many things
 // The view files will interact with the controller and the controller will interact with the model.
 .controller('DashCtrl', function($scope, $rootScope, $state) {
@@ -34,6 +55,7 @@ angular.module('starter.controllers', ['parse-angular'])
 
   // *** PC: This is how you define functions and since $scope is accessible by the whole controler
   $scope.hello = function() {
+<<<<<<< HEAD
     // alert("Hello. How are you " + $scope.name);
 
     Parse.Cloud.run("getConversations").then(function(data) {
@@ -41,23 +63,46 @@ angular.module('starter.controllers', ['parse-angular'])
     }, function(error) {
       console.log(error);
     })
+=======
+    alert("Hello. How are you " + $scope.name);
+>>>>>>> parent of ae7fda1... changes from 9/22 workshop
+>>>>>>> origin/master
   }
 })
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // *** PC: You can call class functions for any factory (check out services.js).
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
+.controller('DashCtrl', function($scope, $rootScope, $state, User) {
+  if(!$rootScope.currentUser) {
+    $state.go("tab.login");
+    return;
+  }
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+  $scope.name = "Prateek";
+
+  $rootScope.logout = function() {
+    Parse.User.logOut();
+    $rootScope.currentUser = null;
+    $state.go("tab.login");
+  }
+})
+
+.controller('ChatsCtrl', function($scope, $rootScope, Chat) {
+  if(!$rootScope.currentUser) {
+    $state.go("tab.login");
+    return;
+  }
+
+  $scope.chats = [];
+
+  $scope.getChats = function() {
+    Chat.getChats().then(function(data) {
+      $scope.chats = data;
+      console.log(data);
+    }, function(error) {
+      alert("Error in getChats")
+    })
+  } 
+
+  $scope.getChats();
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {

@@ -119,4 +119,24 @@ angular.module('starter.services', [])
     });
 
     return User;
+})
+
+.factory('Conversation', function ($q) {
+    var Conversation = Parse.Object.extend("Conversation", {
+        // Instance methods
+        initialize: function(attrs, options) {
+
+        }
+    }, {
+        // Class methods
+
+        getCurrentUserConversations: function() {
+          
+        }
+    });
+
+    return Conversation;
 });
+
+
+;

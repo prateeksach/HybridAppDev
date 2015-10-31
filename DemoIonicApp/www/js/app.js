@@ -37,6 +37,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     $rootScope.currentUser = Parse.User.current();
   }
 
+  window.localStorage.setItem("key", "value")
+  window.localStorage.setItem("key", JSON.stringify({"data": 0}));
+
+  JSON.parse(window.localStorage.getItem("key"));
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
